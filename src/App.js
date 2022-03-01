@@ -4,7 +4,7 @@ import TitleBar from "./components/TitleBar";
 import ResultBar from "./components/ResultBar";
 import ColorsContainer from "./components/ColorsContainer";
 
-function App() {
+function App(props) {
 
   const [messageContainerData, setMessageContainerData] = useState("");
   const [playAgainContainerData, setplayAgainContainerData] = useState("");
@@ -16,9 +16,9 @@ function App() {
 
   return (
     <div>
-      <TitleBar />
+      <TitleBar color={props.color} />
       <ResultBar message={message} buttonText={buttonText} />
-      <ColorsContainer messageContainer={setMessageContainerData} playAgainContainer={setplayAgainContainerData} />
+      <ColorsContainer messageContainer={setMessageContainerData} playAgainContainer={setplayAgainContainerData} color={props.color} correctBtn={props.correctBtn} />
     </div>
   );
 }

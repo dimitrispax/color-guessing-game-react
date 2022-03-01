@@ -8,6 +8,9 @@ function ColorButton(props) {
 
 
     function randomColorGenerator() {
+        if (props.name === props.correctBtn) {
+            return props.color;
+        }
         let red = Math.floor(Math.random() * 256);                         // Setting a random value (0-255) for the red.
         let green = Math.floor(Math.random() * 256);                       // Setting a random value (0-255) for the green.
         let blue = Math.floor(Math.random() * 256);                        // Setting a random value (0-255) for the blue.
@@ -16,20 +19,21 @@ function ColorButton(props) {
     }
 
     function myHandler() {
-        if (props.name === props.correctBtn) {
-            console.log("POW!");
+        if (props.color === color) {
+            console.log(props.color);
+            console.log(color);
             props.messageButton("CORRECT!");
             props.playAgainButton("PLAY AGAIN");
-        } else {
-            props.messageButton("WRONG, TRY AGAIN!");
-            props.playAgainButton("NEW COLORS");
+            } else {
+                props.messageButton("WRONG, TRY AGAIN!");
+                props.playAgainButton("NEW COLORS");
 
+            }
         }
+
+        return (
+            <button className={buttonStyle.btn} onClick={myHandler} style={{ 'backgroundColor': color }}></button>
+        );
     }
 
-    return (
-        <button className={buttonStyle.btn} onClick={myHandler} style={{ 'backgroundColor': color }}></button>
-    );
-}
-
-export default ColorButton;
+    export default ColorButton;

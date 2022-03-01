@@ -5,7 +5,7 @@ function TitleBar(props) {
         <div>
             <h1 className={titleStyle.title}>Color Guessing Game</h1>
             <p className={titleStyle.statement}>Guess the color: </p>
-            <p className={titleStyle.rgbColor}>RGB Color</p>
+            <p className={titleStyle.rgbColor}>{props.color}</p>
         </div>
     );
 }
