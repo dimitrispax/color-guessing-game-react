@@ -5,6 +5,9 @@ import buttonStyle from './ColorButton.module.css';
 function ColorButton(props) {
 
     const [color, setColor] = useState(randomColorGenerator);
+    const [visibility, setVisibility] = useState('visible');
+
+    console.log(props.correctBtn.current);
 
 
     function randomColorGenerator() {
@@ -22,18 +25,21 @@ function ColorButton(props) {
         if (props.color === color) {
             console.log(props.color);
             console.log(color);
+            props.titleColorButton(color);
             props.messageButton("CORRECT!");
             props.playAgainButton("PLAY AGAIN");
-            } else {
-                props.messageButton("WRONG, TRY AGAIN!");
-                props.playAgainButton("NEW COLORS");
+        } else {
+            setVisibility('hidden');
 
-            }
+            props.messageButton("WRONG, TRY AGAIN!");
+            props.playAgainButton("NEW COLORS");
+
         }
-
-        return (
-            <button className={buttonStyle.btn} onClick={myHandler} style={{ 'backgroundColor': color }}></button>
-        );
     }
 
-    export default ColorButton;
+    return (
+        <button className={buttonStyle.btn} onClick={myHandler} style={{ 'backgroundColor': color, 'visibility': visibility }}></button>
+    );
+}
+
+export default ColorButton;
