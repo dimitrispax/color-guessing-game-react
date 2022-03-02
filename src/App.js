@@ -1,4 +1,5 @@
 import { useDebugValue, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 import TitleBar from "./components/TitleBar";
 import ResultBar from "./components/ResultBar";
@@ -7,16 +8,15 @@ import ColorsContainer from "./components/ColorsContainer";
 
 function App(props) {
 
-  const [messageContainerData, setMessageContainerData] = useState("");
-  const [playAgainContainerData, setplayAgainContainerData] = useState("");
-  const [titleColorContainerData, setTitleColorContainerData] = useState("");
-  const [playAgainFlagData, setplayAgainFlagData] = useState(false);
-  const [color, setColor] = useState(randomColorGenerator());
-  const [correctBtn, setCorrectBtn] = useState(0);
+  const [resultBarMessage, setResultBarMessage] = useState("Select the correct color.");
+  const [resultBarButtonText, setResultBarButtonText] = useState("NEW COLORS");
 
-  let message = messageContainerData;
-  let buttonText = playAgainContainerData;
-  let titleColorApp = titleColorContainerData;
+  const [titleBarColor, setTitleBarColor] = useState("");
+  const [playAgainFlagData, setplayAgainFlagData] = useState(false);
+  const [correctBtn, setCorrectBtn] = useState("");
+  const [colorsArray, setColorsArray] = useState([]);
+
+  const rowLength = 3;
 
 
   useEffect(() => {
@@ -34,13 +34,25 @@ function App(props) {
     console.log("correctBtn: " + correctBtn);
   }, [correctBtn]);
 
+  // ES6 FUNCTION
+  const initializeGame = () => {
+    let rowArray = [];
+    let row = [];
+    for (let i = 1; i <= 6; i++) {
+      row.push(randomColorGenerator());
 
-  function initializeGame() {
-    setColor(randomColorGenerator());
-    setCorrectBtn(Math.floor(Math.random() * 7));
-    // while (typeof correctBtn === 'undefined') {
-    //   setCorrectBtn(Math.floor(Math.random() * 7));
-    // }
+      if (i % rowLength === 0 && i != 0) {
+        rowArray.push(row);
+        row = []
+      }
+    }
+    let randomRow = Math.floor(Math.random() * rowArray.length)
+    let randomCol = Math.floor(Math.random() * rowArray[0].length)
+
+    console.log(randomRow, randomCol)
+
+    setCorrectBtn(rowArray[randomRow][randomCol])
+    setColorsArray(rowArray);
   }
 
   function randomColorGenerator() {
@@ -53,9 +65,22 @@ function App(props) {
 
   return (
     <div>
-      <TitleBar color={color} titleColor={titleColorApp} />
-      <ResultBar message={message} buttonText={buttonText} playAgain={setplayAgainFlagData} />
-      <ColorsContainer messageContainer={setMessageContainerData} playAgainContainer={setplayAgainContainerData} titleColorContainer={setTitleColorContainerData} color={color} correctBtn={correctBtn} />
+      <TitleBar
+        correctBtn={correctBtn}
+        titleBarColor={titleBarColor}
+      />
+      <ResultBar
+        resultBarMessage={resultBarMessage}
+        resultBarButtonText={resultBarButtonText}
+        playAgain={() => { initializeGame() }}
+      />
+      <ColorsContainer
+        correctBtn={correctBtn}
+        colorsArray={colorsArray}
+      // messageContainer={setMessageContainerData}
+      // playAgainContainer={setplayAgainContainerData}
+      // titleColorContainer={setTitleColorContainerData}
+      />
     </div>
   );
 }
