@@ -1,14 +1,30 @@
 .mainContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
-.upperRow {
-    flex-wrap: wrap;
 
+.btn {
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
+    border-style: none;
+    margin: 20px 20px 20px 20px;
 }
 
-.lowerRow {
-    flex-wrap: wrap;
+.btn:active {
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
+    border-style: none;
+}
+
+.btn:focus {
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
+    border-style: none;
+    outline: none;
 }

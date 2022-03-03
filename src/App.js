@@ -14,7 +14,7 @@ function App(props) {
   const [titleBarColor, setTitleBarColor] = useState("");
   const [playAgainFlagData, setplayAgainFlagData] = useState(false);
   const [correctBtn, setCorrectBtn] = useState("");
-  const [colorsArray, setColorsArray] = useState([]);
+  const [colorsArray, setColorsArray] = useState({});
 
   const rowLength = 3;
 
@@ -31,28 +31,30 @@ function App(props) {
   }, [playAgainFlagData]);
 
   useEffect(() => {
-    console.log("correctBtn: " + correctBtn);
+    if (correctBtn !== "") {
+      console.log("correctBtn: " + correctBtn);
+    }
   }, [correctBtn]);
+
+  // const changeVisibility = (index) => {
+  //   const tempColorsArray = [...rowArray]
+  //   tempColorsArray[index].visibility = false;
+  //   setRowArray
+  // }
 
   // ES6 FUNCTION
   const initializeGame = () => {
-    let rowArray = [];
-    let row = [];
+    let squareData = [];
     for (let i = 1; i <= 6; i++) {
-      row.push(randomColorGenerator());
-
-      if (i % rowLength === 0 && i != 0) {
-        rowArray.push(row);
-        row = []
-      }
+      squareData.push(randomColorGenerator());
     }
-    let randomRow = Math.floor(Math.random() * rowArray.length)
-    let randomCol = Math.floor(Math.random() * rowArray[0].length)
+    let randomSquare = Math.floor(Math.random() * squareData.length)
 
-    console.log(randomRow, randomCol)
+    console.log("Correct index: " + randomSquare);
+    console.log("Object element: " + squareData[randomSquare].color);
 
-    setCorrectBtn(rowArray[randomRow][randomCol])
-    setColorsArray(rowArray);
+    setCorrectBtn(squareData[randomSquare].color);
+    setColorsArray(squareData);
   }
 
   function randomColorGenerator() {
@@ -60,8 +62,9 @@ function App(props) {
     let green = Math.floor(Math.random() * 256);                       // Setting a random value (0-255) for the green.
     let blue = Math.floor(Math.random() * 256);                        // Setting a random value (0-255) for the blue.
 
-    return "rgb(" + red + ", " + green + ", " + blue + ")";            // Returning the whole new rgb(r,g,b) string.
+    return { color: "rgb(" + red + ", " + green + ", " + blue + ")", visibility: 'visible' }//"rgb(" + red + ", " + green + ", " + blue + ")";            // Returning the whole new rgb(r,g,b) string.
   }
+
 
   return (
     <div>

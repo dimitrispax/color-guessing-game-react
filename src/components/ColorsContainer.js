@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 import ColorButton from './ColorButton';
-import colorStyle from './ColorsContainer.module.css';
+import containerStyle from './ColorsContainer.module.css';
 
 function ColorsContainer(props) {
 
@@ -17,8 +16,8 @@ function ColorsContainer(props) {
     // console.log(titleColorButtonData);
 
     // return (
-    //     <div className={colorStyle.mainContainer}>
-    //         <div className={colorStyle.upperRow}>
+    //     <div className={containerStyle.mainContainer}>
+    //         <div className={containerStyle.upperRow}>
     //             <ColorButton
     //                 playAgainButton={setPlayAgainButtonData}
     //                 messageButton={setMessageButtonData}
@@ -44,7 +43,7 @@ function ColorsContainer(props) {
     //                 name="btn3"
     //             />
     //         </div>
-    //         <div className={colorStyle.lowerRow}>
+    //         <div className={containerStyle.lowerRow}>
     //             <ColorButton
     //                 playAgainButton={setPlayAgainButtonData}
     //                 messageButton={setMessageButtonData}
@@ -73,23 +72,61 @@ function ColorsContainer(props) {
     //     </div>
     // );
 
+    const clickHandler = (color, visibility) => {
+        if (color === props.correctBtn) {
+            console.log("Egine!");
+        } else {
+            console.log("Den egine!");
+            console.log(visibility);
+            visibility = 'hidden';
+            console.log(visibility);
+            return visibility;
+        }
+    }
+
+    // const onClick = event => {
+    //     console.log(event.target.style);
+    // }
+
+
+
     return (
-        <>
-            {props.colorsArray.map((row, index) => {
+        <div className={containerStyle.mainContainer}>
+            {Object.keys(props.colorsArray).map((key, index2) => {
                 return (
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        {row.map((color, index) => {
-                            return (
-                                <div key={index} style={{ height: '100px', width: '100px', backgroundColor: `${color}` }}
-                                >
-                                </div>
-                            )
-                        })}
+                    <div key={index2}
+                        className={containerStyle.btn}
+                        onClick={() => clickHandler(props.colorsArray[key].color, props.colorsArray[key].visibility)}
+                        style={{ backgroundColor: `${props.colorsArray[key].color}`, 'visibility': props.colorsArray[key].visibility }}>
                     </div>
                 )
             })}
-        </>
+        </div>
     )
+
+
+
+    {/* {
+
+                Object.keys(props.colorsArray).map((rowKey, index1) => {
+                    console.log("rowKey: " + props.colorsArray[rowKey]);
+                    return (
+                        <div key={index1} style={{ display: 'flex', justifyContent: 'center' }}>
+                            {Object.keys(props.colorsArray[rowKey]).map((key, index2) => {
+                                return (
+                                    <div key={index2}
+                                        className={containerStyle.btn}
+                                        onClick={() => clickHandler(props.colorsArray[rowKey][key].color, props.colorsArray[rowKey][key].visibility)}
+                                        style={{ backgroundColor: `${props.colorsArray[rowKey][key].color}`, 'visibility': props.colorsArray[rowKey][key].visibility }}>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    )
+                })
+            } */}
+
+
 }
 
 export default ColorsContainer;
