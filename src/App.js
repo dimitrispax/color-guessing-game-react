@@ -15,6 +15,7 @@ function App(props) {
   const [playAgainFlagData, setplayAgainFlagData] = useState(false);
   const [correctBtn, setCorrectBtn] = useState("");
   const [colorsArray, setColorsArray] = useState({});
+  const [makeVisibleAllSquares, setMakeVisibleAllSquares] = useState(false);
 
   const rowLength = 3;
 
@@ -55,6 +56,7 @@ function App(props) {
 
     setCorrectBtn(squareData[randomSquare].color);
     setColorsArray(squareData);
+    setMakeVisibleAllSquares(false);
   }
 
   function randomColorGenerator() {
@@ -80,6 +82,8 @@ function App(props) {
       <ColorsContainer
         correctBtn={correctBtn}
         colorsArray={colorsArray}
+        makeVisibleAllSquares={makeVisibleAllSquares}
+        setMakeVisibleAllSquares={setMakeVisibleAllSquares}
       // messageContainer={setMessageContainerData}
       // playAgainContainer={setplayAgainContainerData}
       // titleColorContainer={setTitleColorContainerData}

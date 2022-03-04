@@ -1,7 +1,6 @@
 .btn {
     width: 200px;
     height: 200px;
-    background-color: navajowhite;
     border-radius: 20%;
     border-style: none;
     margin: 20px 20px 20px 20px;
@@ -10,7 +9,6 @@
 .btn:active {
     width: 200px;
     height: 200px;
-    background-color: navajowhite;
     border-radius: 20%;
     border-style: none;
 }
@@ -18,7 +16,6 @@
 .btn:focus {
     width: 200px;
     height: 200px;
-    background-color: navajowhite;
     border-radius: 20%;
     border-style: none;
     outline: none;
