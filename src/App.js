@@ -14,8 +14,7 @@ function App(props) {
   const [titleBarColor, setTitleBarColor] = useState("");
   const [playAgainFlagData, setplayAgainFlagData] = useState(false);
   const [correctBtn, setCorrectBtn] = useState("");
-  const [colorsArray, setColorsArray] = useState({});
-  const [makeVisibleAllSquares, setMakeVisibleAllSquares] = useState(false);
+  const [colorsArray, setColorsArray] = useState([]);
 
   const rowLength = 3;
 
@@ -46,8 +45,9 @@ function App(props) {
   // ES6 FUNCTION
   const initializeGame = () => {
     let squareData = [];
+    let id = 0;
     for (let i = 1; i <= 6; i++) {
-      squareData.push(randomColorGenerator());
+      squareData.push(randomColorGenerator(i - 1));
     }
     let randomSquare = Math.floor(Math.random() * squareData.length)
 
@@ -56,15 +56,13 @@ function App(props) {
 
     setCorrectBtn(squareData[randomSquare].color);
     setColorsArray(squareData);
-    setMakeVisibleAllSquares(false);
   }
 
-  function randomColorGenerator() {
+  function randomColorGenerator(id) {
     let red = Math.floor(Math.random() * 256);                         // Setting a random value (0-255) for the red.
     let green = Math.floor(Math.random() * 256);                       // Setting a random value (0-255) for the green.
     let blue = Math.floor(Math.random() * 256);                        // Setting a random value (0-255) for the blue.
-
-    return { color: "rgb(" + red + ", " + green + ", " + blue + ")", visibility: 'visible' }//"rgb(" + red + ", " + green + ", " + blue + ")";            // Returning the whole new rgb(r,g,b) string.
+    return { color: "rgb(" + red + ", " + green + ", " + blue + ")", visibility: 'visible', id: id }//"rgb(" + red + ", " + green + ", " + blue + ")";            // Returning the whole new rgb(r,g,b) string.
   }
 
 
@@ -82,8 +80,7 @@ function App(props) {
       <ColorsContainer
         correctBtn={correctBtn}
         colorsArray={colorsArray}
-        makeVisibleAllSquares={makeVisibleAllSquares}
-        setMakeVisibleAllSquares={setMakeVisibleAllSquares}
+        setColorsArray={setColorsArray}
       // messageContainer={setMessageContainerData}
       // playAgainContainer={setplayAgainContainerData}
       // titleColorContainer={setTitleColorContainerData}
