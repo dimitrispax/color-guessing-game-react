@@ -1,23 +1,17 @@
-import { useDebugValue, useEffect, useRef, useState } from 'react';
-import { flushSync } from 'react-dom';
+import { useEffect, useState } from 'react';
 
-import TitleBar from "./components/TitleBar";
-import ResultBar from "./components/ResultBar";
-import ColorsContainer from "./components/ColorsContainer";
+import TitleBar from "./components/TitleBar/TitleBar";
+import ResultBar from "./components/ResultBar/ResultBar";
+import ColorsContainer from "./components/ColorsContainer/ColorsContainer";
 
-
-function App(props) {
+const App = (props) => {
 
   const [resultBarMessage, setResultBarMessage] = useState("Select the correct color.");
   const [resultBarButtonText, setResultBarButtonText] = useState("NEW COLORS");
-
-  const [titleBarColor, setTitleBarColor] = useState("");
+  const [titleBarColor, setTitleBarColor] = useState("rgb(28, 173, 173)");
   const [playAgainFlagData, setplayAgainFlagData] = useState(false);
-  const [correctBtn, setCorrectBtn] = useState("");
+  const [correctColor, setCorrectColor] = useState("");
   const [colorsArray, setColorsArray] = useState([]);
-
-  const rowLength = 3;
-
 
   useEffect(() => {
     initializeGame();
@@ -30,19 +24,6 @@ function App(props) {
     }
   }, [playAgainFlagData]);
 
-  useEffect(() => {
-    if (correctBtn !== "") {
-      console.log("correctBtn: " + correctBtn);
-    }
-  }, [correctBtn]);
-
-  // const changeVisibility = (index) => {
-  //   const tempColorsArray = [...rowArray]
-  //   tempColorsArray[index].visibility = false;
-  //   setRowArray
-  // }
-
-  // ES6 FUNCTION
   const initializeGame = () => {
     let squareData = [];
     let id = 0;
@@ -50,26 +31,22 @@ function App(props) {
       squareData.push(randomColorGenerator(i - 1));
     }
     let randomSquare = Math.floor(Math.random() * squareData.length)
-
-    console.log("Correct index: " + randomSquare);
-    console.log("Object element: " + squareData[randomSquare].color);
-
-    setCorrectBtn(squareData[randomSquare].color);
+    setCorrectColor(squareData[randomSquare].color);
     setColorsArray(squareData);
+    setTitleBarColor("rgb(28, 173, 173)")
   }
 
-  function randomColorGenerator(id) {
-    let red = Math.floor(Math.random() * 256);                         // Setting a random value (0-255) for the red.
-    let green = Math.floor(Math.random() * 256);                       // Setting a random value (0-255) for the green.
-    let blue = Math.floor(Math.random() * 256);                        // Setting a random value (0-255) for the blue.
+  const randomColorGenerator = (id) => {
+    let red = Math.floor(Math.random() * 256);    // Setting a random value (0-255) for the red.
+    let green = Math.floor(Math.random() * 256);  // Setting a random value (0-255) for the green.
+    let blue = Math.floor(Math.random() * 256);   // Setting a random value (0-255) for the blue.
     return { color: "rgb(" + red + ", " + green + ", " + blue + ")", visibility: 'visible', id: id }//"rgb(" + red + ", " + green + ", " + blue + ")";            // Returning the whole new rgb(r,g,b) string.
   }
-
 
   return (
     <div>
       <TitleBar
-        correctBtn={correctBtn}
+        correctColor={correctColor}
         titleBarColor={titleBarColor}
       />
       <ResultBar
@@ -78,12 +55,12 @@ function App(props) {
         playAgain={() => { initializeGame() }}
       />
       <ColorsContainer
-        correctBtn={correctBtn}
+        correctColor={correctColor}
         colorsArray={colorsArray}
         setColorsArray={setColorsArray}
-      // messageContainer={setMessageContainerData}
-      // playAgainContainer={setplayAgainContainerData}
-      // titleColorContainer={setTitleColorContainerData}
+        setResultBarMessage={setResultBarMessage}
+        setResultBarButtonText={setResultBarButtonText}
+        setTitleBarColor={setTitleBarColor}
       />
     </div>
   );
