@@ -10,6 +10,19 @@
     margin-right: auto;
     width: 60vw;
     background-color: white;
+    justify-content: baseline;
+}
+
+
+
+/* On screens that are  536px wide or less, the background color is blue */
+@media all and (max-width: 536px) {
+
+    .innerContainer {
+
+        width: 100vw;
+
+    }
 }
 
 .btn {

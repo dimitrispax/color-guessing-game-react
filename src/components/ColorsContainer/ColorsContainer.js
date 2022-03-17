@@ -30,6 +30,7 @@ const ColorsContainer = ({ colorsArray, correctColor, setColorsArray, setTitleBa
         setColorsArray(tempColorsArray)
     }
 
+
     return (
         <div className={containerStyle.mainContainer}>
             <div className={containerStyle.innerContainer}>

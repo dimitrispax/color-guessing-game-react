@@ -15,6 +15,7 @@ const App = (props) => {
   const [difficulty, setDifficulty] = useState("EASY");
   const [numberOfSquares, setNumberOfSquares] = useState(6);
 
+
   useEffect(() => {
     initializeGame();
   }, []);
@@ -50,10 +51,10 @@ const App = (props) => {
   const changeDifficulty = () => {
     if (difficulty === "EASY") {
       setDifficulty("MEDIUM")
-      setNumberOfSquares(8)
+      setNumberOfSquares(9)
     } else if (difficulty === "MEDIUM") {
       setDifficulty("HARD")
-      setNumberOfSquares(10)
+      setNumberOfSquares(12)
     } else if (difficulty === "HARD") {
       setDifficulty("EASY")
       setNumberOfSquares(6)
