@@ -15,6 +15,13 @@
 }
 
 /* On screens that are 1834px wide or less, the background color is blue */
+@media all and (max-width: 4000px) {
+    .innerContainer {
+        width: 720px
+    }
+}
+
+/* On screens that are 1834px wide or less, the background color is blue */
 @media all and (max-width: 1834px) {
     .innerContainer {
         width: 50%;
@@ -30,7 +37,7 @@
 
 
 /* On screens that are 1440px wide or less, the background color is blue */
-@media all and (max-width: 1440px) {
+@media all and (max-width: 1484px) {
     .innerContainer {
         width: 60%;
     }
@@ -45,6 +52,48 @@
 
 /* On screens that are 1060px wide or less, the background color is blue */
 @media all and (max-width: 1060px) {
+    .innerContainer {
+        width: 90%;
+    }
+}
+
+/* On screens that are 849px wide or less, the background color is blue */
+@media all and (max-width: 849px) {
+    .innerContainer {
+        width: 100%;
+    }
+}
+
+/* On screens that are 800px wide or less, the background color is blue */
+@media all and (max-width: 800px) {
+    .innerContainer {
+        width: 90%;
+    }
+}
+
+/* On screens that are 635px wide or less, the background color is blue */
+@media all and (max-width: 635px) {
+    .innerContainer {
+        width: 100%;
+    }
+}
+
+/* On screens that are 570px wide or less, the background color is blue */
+@media all and (max-width: 570px) {
+    .innerContainer {
+        width: 80%;
+    }
+}
+
+/* On screens that are 470px wide or less, the background color is blue */
+@media all and (max-width: 470px) {
+    .innerContainer {
+        width: 80%;
+    }
+}
+
+/* On screens that are 375px wide or less, the background color is blue */
+@media all and (max-width: 375px) {
     .innerContainer {
         width: 90%;
     }

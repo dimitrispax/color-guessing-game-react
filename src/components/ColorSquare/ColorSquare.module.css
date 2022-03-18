@@ -20,3 +20,59 @@
     border-style: none;
     outline: none;
 }
+
+/* On screens that are 800px wide or less, the background color is blue */
+@media all and (max-width: 800px) {
+    .btn {
+        width: 150px;
+        height: 150px;
+        margin: 15px 15px 15px 15px;
+    }
+
+    .btn:active {
+        width: 150px;
+        height: 150px;
+    }
+
+    .btn:focus {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* On screens that are 570px wide or less, the background color is blue */
+@media all and (max-width: 570px) {
+    .btn {
+        width: 100px;
+        height: 100px;
+        margin: 10px 10px 10px 10px;
+    }
+
+    .btn:active {
+        width: 100px;
+        height: 100px;
+    }
+
+    .btn:focus {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* On screens that are 470px wide or less, the background color is blue */
+@media all and (max-width: 470px) {
+    .btn {
+        width: 80px;
+        height: 80px;
+    }
+
+    .btn:active {
+        width: 80px;
+        height: 80px;
+    }
+
+    .btn:focuss {
+        width: 80px;
+        height: 80px;
+    }
+}
