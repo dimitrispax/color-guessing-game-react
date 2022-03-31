@@ -1,0 +1,24 @@
+body {
+    min-width: 347px;
+    background-color: rgb(43, 43, 43);
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+    padding-top: 3px;
+    font-size: 21px;
+    font-weight: 300;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    text-decoration: none;
+    white-space: pre;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: 600;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    text-decoration: none;
+    color: white;
+}

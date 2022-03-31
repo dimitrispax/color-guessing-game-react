@@ -1,0 +1,68 @@
+.mainContainer {
+    margin: 0;
+    padding: 0;
+    height: 31px;
+    background-color: white;
+}
+
+.innerContainer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
+    height: 31px;
+    background-color: white;
+    justify-content: baseline;
+}
+
+
+
+/* On screens that are  536px wide or less, the background color is blue */
+@media all and (max-width: 536px) {
+    .innerContainer {
+        width: 100vw;
+    }
+}
+
+/* On screens that are 330px wide or less, the background color is blue */
+@media all and (max-width: 330px) {
+    .message {
+        line-height: 25px;
+        font-size: 17px;
+    }
+}
+
+/* On screens that are 296px wide or less, the background color is blue */
+@media all and (max-width: 296px) {
+    .message {
+        font-size: 14px;
+    }
+}
+
+/* On screens that are 272px wide or less, the background color is blue */
+@media all and (max-width: 272px) {
+    .message {
+        font-size: 11px;
+    }
+}
+
+.btn {
+    float: right;
+    background-color: white;
+    height: 31px;
+    border-style: none;
+    outline: none;
+
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: 600;
+    color: rgb(28, 173, 173);
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: rgb(28, 173, 173);
+    color: white;
+    height: 31px;
+    border-style: none;
+    outline: none;
+}
